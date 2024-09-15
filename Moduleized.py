@@ -1,4 +1,4 @@
-from funcs import *
+from detect import *
 
 detection = detect()
 #detection.static(["note.jpg"])

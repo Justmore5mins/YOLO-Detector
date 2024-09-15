@@ -1,0 +1,6 @@
+README.md
+setup.py
+yolo_detector.egg-info/PKG-INFO
+yolo_detector.egg-info/SOURCES.txt
+yolo_detector.egg-info/dependency_links.txt
+yolo_detector.egg-info/top_level.txt
