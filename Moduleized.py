@@ -1,6 +1,4 @@
 from detect import *
 
-detection = detect()
-#detection.static(["note.jpg"])
-#detection.stream(camera=0  ,gui=True,cls=[3])
-detection.stream(camera=0,cls=[3])
+#Detect(conf=0.1).static(["imgs/img2.png"])
+Detect().stream(camera=0, cls=[3])

@@ -1,1 +1,0 @@
-This is a module let yolov8 detecting more easily
