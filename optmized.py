@@ -1,5 +1,5 @@
 from ultralytics import YOLO
-import cv2
+import another
 import numpy as np
 from math import ceil
 
@@ -16,9 +16,9 @@ class Detect:
         '''
         Initialize camera
         '''
-        cam = cv2.VideoCapture(cam_id)
-        cam.set(cv2.CAP_PROP_FRAME_WIDTH, resolution[0])
-        cam.set(cv2.CAP_PROP_FRAME_HEIGHT, resolution[1])
+        cam = another.VideoCapture(cam_id)
+        cam.set(another.CAP_PROP_FRAME_WIDTH, resolution[0])
+        cam.set(another.CAP_PROP_FRAME_HEIGHT, resolution[1])
         return cam
 
     def static(self, imgs: list[str], save: bool = True):
@@ -33,7 +33,7 @@ class Detect:
         Detect objects from webcam stream
         '''
         cam = self.__CamInit__(camera, resolution)
-        font = cv2.FONT_HERSHEY_SIMPLEX
+        font = another.FONT_HERSHEY_SIMPLEX
         fontscale = 1
         color = (255, 255, 0)
         thickness = 2
@@ -65,28 +65,28 @@ class Detect:
                             # Check if the nearest box is centered
                             if (resolution[1] / 2 + 10) >= box_centers[i] >= (resolution[1] / 2 - 10):
                                 # Nearest box is centered
-                                cv2.rectangle(img, (x1, y1), (x2, y2), (255, 255, 0), 3)
+                                another.rectangle(img, (x1, y1), (x2, y2), (255, 255, 0), 3)
                             else:
                                 # Nearest box is not centered
-                                cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 3)
+                                another.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 3)
                         else:
                             # Non-nearest boxes
-                            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 3)
+                            another.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 3)
 
                         # Display detection details
-                        cv2.putText(img, f"Detected {len(boxes)} item(s)", (10, 23), font, fontscale, color, thickness)
-                        cv2.putText(img, f"{ceil(box.conf[0].item() * 100)}%  {x1}x{y1}, {x2}x{y2}", 
+                        another.putText(img, f"Detected {len(boxes)} item(s)", (10, 23), font, fontscale, color, thickness)
+                        another.putText(img, f"{ceil(box.conf[0].item() * 100)}%  {x1}x{y1}, {x2}x{y2}", 
                                     (x1, y1), font, fontscale, color, thickness)
 
-                cv2.imshow("CamDetected", img)
+                another.imshow("CamDetected", img)
 
                 # Break the loop on 'q' key
-                if cv2.waitKey(1) == ord('q'):
+                if another.waitKey(1) == ord('q'):
                     break
         finally:
             # Ensure camera and windows are released properly
             cam.release()
-            cv2.destroyAllWindows()
+            another.destroyAllWindows()
 
 if __name__ == "__main__":
     Detect().stream(camera=0, cls=[3])
