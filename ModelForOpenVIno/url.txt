@@ -1,0 +1,6 @@
+https://medium.com/openvino-toolkit/how-to-run-openvino-with-neural-compute-stick-2-on-linux-9ab1f185c920
+https://docs.ultralytics.com/integrations/openvino/#openvino-yolov8-benchmarks
+https://www.youtube.com/watch?v=PNmH_ugW6Zw&ab_channel=IntelSoftware
+
+＊＊
+https://www.ultralytics.com/blog/export-and-optimize-a-yolov8-model-for-inference-on-openvino

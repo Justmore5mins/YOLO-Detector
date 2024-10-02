@@ -7,6 +7,7 @@ class Detect:
     def __init__(self, model: str = "best.pt", conf: float = 0.8) -> None:
         '''
         init detection
+        OpenVino Support Natively?
         '''
         self.conf = conf
         self.model = YOLO(model)
@@ -40,7 +41,6 @@ class Detect:
 
         while True:
             success, img = cam.read()
-            
             # Perform inference with streaming on the current frame
             results = self.model(img, stream=True, conf=self.conf, classes=cls)
 
@@ -77,6 +77,9 @@ class Detect:
 
         cam.release()
         cv2.destroyAllWindows()
-
+        
+class OpenVino:
+    def __init__(self) -> None:
+        pass
 if __name__ == "__main__":
     Detect().stream(camera=0, cls=[3])
