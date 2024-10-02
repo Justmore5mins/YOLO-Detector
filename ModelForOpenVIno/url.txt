@@ -4,3 +4,9 @@ https://www.youtube.com/watch?v=PNmH_ugW6Zw&ab_channel=IntelSoftware
 
 ＊＊
 https://www.ultralytics.com/blog/export-and-optimize-a-yolov8-model-for-inference-on-openvino
+
+justmore5mins@MacBookPro text editor % /usr/local/bin/python3 "/Users/justmore5mins/Documents/codes/python/text editor/Moduleized.py"
+
+2024-10-02 18:15:20.046 Python[14327:1161248] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/6j/4266gbg55wxfctxh67qpxfph0000gp/T/org.python.python.savedState
+2024-10-02 18:15:20.580 Python[14327:1161248] +[IMKClient subclass]: chose IMKClient_Legacy
+2024-10-02 18:15:20.580 Python[14327:1161248] +[IMKInputSession subclass]: chose IMKInputSession_Legacy

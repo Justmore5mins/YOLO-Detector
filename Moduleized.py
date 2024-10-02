@@ -1,4 +1,4 @@
-from detect import *
+from detect import OpenVino,Detect
 
-#Detect(conf=0.1).static(["imgs/img2.png"])
-Detect(conf=0.1).stream(camera=0)
+#OpenVino("FRC_openvino_model/FRC.xml", device_name="CPU").stream(camera=0, gui=True)
+Detect("FRC.pt").stream(camera=0, cls=[3], gui=True)
