@@ -1,4 +1,7 @@
+from os import system
+system("clear")
+
 from detect import OpenVino,Detect
 
-#OpenVino("FRC_openvino_model/FRC.xml", device_name="CPU").stream(camera=0, gui=True)
-Detect("runs/detect/train/weights/best.pt").stream(camera=0, gui=True)
+#enVino(model_path="FRC_openvino_model/FRC.xml",device="CPU",conf_threshold=0.0).detect_from_cam()
+Detect("FRC_ncnn_model").stream(camera=0, gui=True)
