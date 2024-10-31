@@ -3,9 +3,11 @@ import cv2
 import numpy as np
 from math import ceil
 from time import perf_counter
+from flask import Flask, Response
+from flask_cors import CORS
 
 class Detect:
-    def __init__(self, model: str = "best.pt", conf: float = 0.8) -> None:
+    def __init__(self, model: str = "best.pt", conf: float = 0.8, datastream:bool=False) -> None:
         '''
         init detection
         OpenVino Support Natively?
@@ -13,7 +15,11 @@ class Detect:
         self.conf = conf
         self.model = YOLO(model)
         self.ClassInt: list[int] = [i for i in range(len(self.model.names))]
-
+        self.datastream = datastream
+        if datastream:
+            self.app = Flask(__name__)
+            CORS(self.app)
+    
     def __CamInit__(self, cam_id: int, resolution: tuple[int, int] = (480, 640)):
         '''
         init camera
@@ -59,10 +65,12 @@ class Detect:
                 for i, box in enumerate(boxes):
                     x1, y1, x2, y2 = map(int, box.xyxy[0])
                     if i == nearest_idx:
-                        if (resolution[1] / 2 + 10) >= box_centers[i] >= (resolution[1] / 2 - 10): #if nearest detected and centered
-                            cv2.rectangle(img, (x1, y1), (x2, y2), (255, 255, 0), 3)
-                        else:
-                            cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 3)#if nearest detected but not centered
+                        @self.app.route("/get")
+                        def get():
+                            if (resolution[1] / 2 + 10) >= box_centers[i] >= (resolution[1] / 2 - 10): #if nearest detected and centered
+                                return 0;
+                            else:#if nearest detected but not centered
+                                return 320-box_centers[i];
                     else:
                         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 3)#others(multi-detected processing)
 
@@ -179,4 +187,4 @@ class OpenVino:
 
 
 if __name__ == "__main__":  
-    Detect().stream(camera=0, cls=[3])
+    Detect("FRC_ncnn_model").stream(camera=1, cls=[3],gui=False)
