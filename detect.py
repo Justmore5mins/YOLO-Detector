@@ -85,9 +85,9 @@ class Detect:
         cv2.destroyAllWindows()
 
 
-class Hailo:
-    def __init__(self,core:Detect) -> None:
-        self.core = core
+class Nano:
+    def __init__(self):
+        pass
 
 if __name__ == "__main__":  
-    Detect("FRC_ncnn_model",datastream=True,conf=0.5).stream(camera=1,gui=True)
+    Detect("trash_ncnn_model",datastream=True,conf=0.5).stream(camera=1,gui=True)
