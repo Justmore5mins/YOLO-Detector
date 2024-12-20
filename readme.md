@@ -1,0 +1,1 @@
+fix some bugs, supports other devices like gpu or mps, and take a break for an afternoon

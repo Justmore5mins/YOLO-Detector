@@ -5,7 +5,7 @@ from math import ceil
 
 
 class Detect:
-    def __init__(self, model: str = "best.pt", conf: float = 0.8, datastream:bool=False) -> None:
+    def __init__(self, model: str = "best.pt", conf: float = 0.8, datastream:bool=False,device:str|int="cpu") -> None:
         '''
         init detection
         OpenVino Support Natively?
@@ -14,6 +14,7 @@ class Detect:
         self.conf = conf
         self.model = YOLO(model)
         self.ClassInt: list[int] = [i for i in range(len(self.model.names))]
+        self.model.to(device=device) if device != "cpu" else None
     
     def __CamInit__(self, cam_id: int, resolution: tuple[int, int] = (480, 640)):
         '''
@@ -85,9 +86,6 @@ class Detect:
         cv2.destroyAllWindows()
 
 
-class Nano:
-    def __init__(self):
-        pass
 
 if __name__ == "__main__":  
-    Detect("trash_ncnn_model",datastream=True,conf=0.5).stream(camera=1,gui=True)
+    Detect("FRC_ncnn_model",datastream=True,conf=0).stream(camera=0,gui=False)
